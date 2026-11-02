@@ -1,0 +1,37 @@
+---
+title: Events
+description: Events by Shubhkant Foundation. Register for upcoming events, or read the summary and see the photographs of events that have taken place.
+nav: events
+h1: Events
+lead: Select an event to see the details and register. For events that have taken place, you will find a summary and photographs.
+scripts: events
+---
+{{page_hero}}
+
+<section class="band" id="upcoming" aria-labelledby="upcoming-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="upcoming-title">Upcoming events <span class="count" data-count="open">{{count_open}}</span></h2>
+      <p class="lead">Registration opens on each event's page.</p>
+    </div>
+    <div class="ev-grid" id="grid-open">
+      {{events_open}}
+    </div>
+    <p class="empty" id="empty-open"{{hidden_if_open_empty}}>There are no upcoming events at the moment. Please check back soon.</p>
+  </div>
+</section>
+
+<section class="band tone-alt" id="completed" aria-labelledby="completed-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="completed-title">Completed events <span class="count" data-count="done">{{count_done}}</span></h2>
+      <p class="lead">A summary and photographs of every event that has taken place.</p>
+    </div>
+    <div class="ev-grid" id="grid-done">
+      {{events_done}}
+    </div>
+    <p class="empty" id="empty-done"{{hidden_if_done_empty}}>Summaries and photographs appear here after each event has taken place.</p>
+  </div>
+</section>
+
+{{events_data}}

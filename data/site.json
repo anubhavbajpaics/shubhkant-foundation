@@ -1,0 +1,31 @@
+{
+  "name": "Shubhkant Foundation",
+  "tagline": "Noble thoughts, meaningful efforts, a better society.",
+  "taglineHi": "शुभ विचार, सार्थक प्रयास, बेहतर समाज।",
+  "description": "Shubhkant Foundation is a Section 8 non-profit organisation working for youth empowerment, education, leadership and community welfare.",
+
+  "url": "",
+
+  "applyUrl": "https://forms.gle/vvVRJwP8sHz4y5sY6",
+
+  "contact": {
+    "email": "",
+    "phone": "",
+    "whatsapp": "",
+    "address": "",
+    "instagram": "",
+    "linkedin": "",
+    "facebook": "",
+    "youtube": ""
+  },
+
+  "registrationFields": [
+    { "id": "name", "label": "Full name", "type": "text", "required": true, "autocomplete": "name", "maxlength": 80 },
+    { "id": "email", "label": "Email address", "type": "email", "required": true, "autocomplete": "email", "maxlength": 120 },
+    { "id": "phone", "label": "Phone or WhatsApp number", "type": "tel", "required": true, "autocomplete": "tel", "maxlength": 20, "hint": "Add the country code if you are outside India." },
+    { "id": "city", "label": "City", "type": "text", "required": true, "autocomplete": "address-level2", "maxlength": 80 },
+    { "id": "organisation", "label": "College, school or organisation", "type": "text", "required": false, "autocomplete": "organization", "maxlength": 120 },
+    { "id": "role", "label": "I am a", "type": "select", "required": false, "options": ["School student", "College student", "Working professional", "Entrepreneur", "Educator", "Other"] },
+    { "id": "message", "label": "Anything you would like us to know?", "type": "textarea", "required": false, "maxlength": 500 }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "sample-youth-workshop",
+    "title": "Sample: Youth Leadership Workshop",
+    "start": "2026-09-12",
+    "end": "2026-09-12",
+    "venue": "Sample venue, New Delhi",
+    "summary": "A sample completed event, shown only in previews, so you can see how a recap looks.",
+    "description": ["A sample event used to demonstrate a completed event page."],
+    "registration": { "mode": "form", "open": true },
+    "recap": {
+      "summary": [
+        "This is sample text. After an event, you write a short account of what happened here: who took part, what was discussed and what came out of it.",
+        "Photographs placed in the event's photo folder appear below this summary automatically."
+      ],
+      "highlights": [ { "label": "Participants", "value": "120" }, { "label": "Sessions", "value": "6" }, { "label": "Speakers", "value": "8" } ],
+      "captions": { "photo-1.jpg": "Sample photograph: opening session" }
+    }
+  }
+]

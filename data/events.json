@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "navnirman-e-bharat",
+    "title": "Navnirman-e-Bharat Youth Parliament",
+    "subtitle": "नवनिर्माण-ए-भारत",
+    "tagline": "युवा • विचार • परिवर्तन",
+    "start": "2026-11-16",
+    "end": "2026-11-17",
+    "venue": "",
+    "logo": "assets/logo-navnirman.webp",
+    "summary": "A two-day Youth Parliament organised by Shubhkant Foundation.",
+    "description": [
+      "A two-day Youth Parliament organised by Shubhkant Foundation.",
+      "The venue and programme will be shared on this page soon."
+    ],
+    "registration": { "mode": "form", "open": true },
+    "recap": { "summary": [], "highlights": [], "captions": {} }
+  },
+  {
+    "slug": "bana-daal",
+    "title": "BANA DAAL",
+    "tagline": "Soch. Bana. Badha.",
+    "start": "2026-12-27",
+    "end": "2026-12-27",
+    "venue": "",
+    "logo": "assets/logo-banadaal.webp",
+    "page": "/bana-daal",
+    "summary": "A flagship event under Shubhkant Foundation that brings together aspiring entrepreneurs, young minds and visionary thinkers to turn potential into progress.",
+    "description": [
+      "BANA DAAL is a flagship event organised under the auspices of Shubhkant Foundation. Conceived as a platform for innovation, learning and leadership, it brings together aspiring entrepreneurs, young minds and visionary thinkers to turn potential into progress."
+    ],
+    "highlights": [
+      "Linking aspiring entrepreneurs, student innovators and startup founders with industry professionals, experienced mentors and potential investors.",
+      "Panel discussions and interactive sessions on business strategies, sustainable growth, funding awareness and technological innovation.",
+      "Pitching opportunities, practical learning and expert feedback.",
+      "Networking, interdisciplinary partnerships and professional relationships."
+    ],
+    "registration": { "mode": "form", "open": true },
+    "recap": { "summary": [], "highlights": [], "captions": {} }
+  },
+  {
+    "slug": "delhi-vidhan-sabha-youth-parliament",
+    "title": "Delhi Vidhan Sabha Youth Parliament",
+    "start": "2027-01",
+    "dateTentative": true,
+    "dateText": "Tentatively January 2027",
+    "venue": "",
+    "logo": "assets/logo-vidhan.webp",
+    "summary": "A youth parliament initiative by Shubhkant Foundation. The dates are tentative and will be confirmed here.",
+    "description": [
+      "A youth parliament initiative by Shubhkant Foundation.",
+      "The dates are tentative. The confirmed dates will be shared on this page."
+    ],
+    "registration": { "mode": "form", "open": true },
+    "recap": { "summary": [], "highlights": [], "captions": {} }
+  }
+]

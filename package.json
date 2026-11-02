@@ -1,0 +1,15 @@
+{
+  "name": "shubhkant-foundation-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website for Shubhkant Foundation: multi-page, with event pages that switch between registration and a photo summary.",
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:sample": "node scripts/build.mjs --sample --out=dist-sample",
+    "dev": "node scripts/dev.mjs",
+    "dev:sample": "node scripts/dev.mjs --sample",
+    "test": "node scripts/test.mjs"
+  },
+  "optionalDependencies": { "sharp": "^0.35.5" }
+}
