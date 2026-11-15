@@ -1,0 +1,132 @@
+---
+title: Shubhkant Foundation | Youth empowerment, education and community welfare
+description: Shubhkant Foundation is a Section 8 non-profit organisation working for youth empowerment, education, leadership and community welfare. See our events and register.
+nav: home
+scripts: events
+---
+<section class="hero tone-inv" id="top" aria-labelledby="hero-title">
+  <svg class="hero__vine" viewBox="-36 0 276 350" aria-hidden="true" focusable="false"><use href="#vine"/></svg>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__hi deva" lang="hi">शुभ विचार, सार्थक प्रयास, बेहतर समाज।</span>
+        <span class="hero__en">Noble thoughts, meaningful efforts, a better society.</span>
+      </h1>
+      <p class="hero__lead">Shubhkant Foundation is a Section 8 non-profit organisation working for youth empowerment, education, leadership and community welfare.</p>
+      <div class="btn-row">
+        <a class="btn" href="/events">See our events{{icon: arrow}}</a>
+        <a class="btn btn--ghost" href="/join">Join the team</a>
+      </div>
+    </div>
+    <div class="hero__art">
+      <div class="arch">
+        {{slot: hero|arch|4/5|Team or event photograph}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{next_event}}
+
+<section class="band" id="events" aria-labelledby="events-title">
+  <div class="wrap">
+    <div class="sec-head sec-head--row">
+      <div>
+        <h2 id="events-title">Events</h2>
+        <p class="lead">Select an event to see the details and register. Completed events have a summary and photographs.</p>
+      </div>
+      <a class="btn btn--ghost" href="/events">All events{{icon: arrow}}</a>
+    </div>
+    <div class="ev-grid">
+      {{events_preview}}
+    </div>
+  </div>
+</section>
+
+<section class="band tone-alt" aria-labelledby="intro-title">
+  <div class="wrap about">
+    <div class="about__copy">
+      <h2 id="intro-title">About Shubhkant Foundation</h2>
+      <p class="lead">Shubhkant Foundation is a Section 8 non-profit organisation committed to social development, youth empowerment, education, leadership development and community welfare.</p>
+      <p>Established with the vision of creating a more inclusive, aware and empowered society, the Foundation seeks to bridge the gap between opportunities and the communities that need them.</p>
+      <p>The aim is to create platforms where people can learn, participate, lead and contribute to meaningful change.</p>
+      <div class="btn-row">
+        <a class="btn" href="/about">More about us{{icon: arrow}}</a>
+        <a class="btn btn--ghost" href="/about#vision">Our vision and mission</a>
+      </div>
+    </div>
+    <div class="about__art">
+      <div class="arch">
+        {{slot: about-1|arch|4/5|Community photograph}}
+      </div>
+      <div class="about__photo">
+        {{slot: about-2|round|1/1|Workshop or outreach photograph}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="areas-title">
+  <div class="wrap">
+    <div class="sec-head sec-head--row">
+      <div>
+        <h2 id="areas-title">Core areas of work</h2>
+        <p class="lead">Seven areas where the Foundation focuses its programmes and partnerships.</p>
+      </div>
+      <a class="btn btn--ghost" href="/about#work">Read about our work{{icon: arrow}}</a>
+    </div>
+    <ul class="tiles">
+      <li><a class="tile" href="/about#work"><span class="area__icon">{{icon: flame}}</span><h3>Youth empowerment and leadership</h3></a></li>
+      <li><a class="tile" href="/about#work"><span class="area__icon">{{icon: cap}}</span><h3>Education and skill development</h3></a></li>
+      <li><a class="tile" href="/about#work"><span class="area__icon">{{icon: venus}}</span><h3>Women empowerment and development</h3></a></li>
+      <li><a class="tile" href="/about#work"><span class="area__icon">{{icon: child}}</span><h3>Child welfare and development</h3></a></li>
+      <li><a class="tile" href="/about#work"><span class="area__icon">{{icon: users}}</span><h3>Social welfare and community development</h3></a></li>
+      <li><a class="tile" href="/about#work"><span class="area__icon">{{icon: scale}}</span><h3>Legal awareness and human rights</h3></a></li>
+      <li><a class="tile" href="/about#work"><span class="area__icon">{{icon: leaf}}</span><h3>Environment and sustainability</h3></a></li>
+      <li><a class="tile tile--more" href="/about#approach"><span class="area__icon">{{icon: arrow}}</span><h3>Our approach and principles</h3></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band tone-inv bd" aria-labelledby="bd-title">
+  <div class="wrap">
+    <div class="bd__top">
+      <img class="bd__logo" src="/assets/logo-banadaal.webp" width="340" height="340" alt="BANA DAAL: Soch. Bana. Badha. An initiative under Shubhkant Foundation">
+      <div class="bd__intro">
+        <h2 id="bd-title">BANA DAAL</h2>
+        <p class="bd__tagline">Soch. Bana. Badha.</p>
+        <p class="lead">A flagship event under Shubhkant Foundation that brings together aspiring entrepreneurs, young minds and visionary thinkers to turn potential into progress.</p>
+        <div class="btn-row">
+          <span class="bd__date">{{icon: calendar}}{{event_when: bana-daal}}</span>
+          <a class="btn" href="{{event_url: bana-daal}}">{{event_cta: bana-daal}}{{icon: arrow}}</a>
+          <a class="btn btn--ghost" href="/bana-daal">About BANA DAAL</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="involved-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="involved-title">Get involved</h2>
+      <p class="lead">Lead with us, or work with us. Both start with a short form or a conversation.</p>
+    </div>
+    <div class="cta-pair">
+      <article class="cta-card">
+        <span class="area__icon">{{icon: users}}</span>
+        <h3>Join our team</h3>
+        <p>Leadership and management opportunities, an official appointment letter, a certificate of experience and networking across women empowerment, child welfare, education, legal awareness and the environment.</p>
+        <a class="btn" href="/join">Join the team{{icon: arrow}}</a>
+      </article>
+      <article class="cta-card">
+        <span class="area__icon">{{icon: network}}</span>
+        <h3>Partner with us</h3>
+        <p>Institutions, non-profits, businesses, professionals and community groups can collaborate with us on workshops, outreach, event partnerships, knowledge sessions and sponsorships.</p>
+        <a class="btn btn--ghost" href="/partner">Partner with us{{icon: arrow}}</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+{{events_data}}

@@ -1,0 +1,108 @@
+---
+title: Add an event
+description: A tool for organisers to prepare a new event, or the summary of a completed event, for the Shubhkant Foundation website.
+nav: none
+noindex: true
+h1: Add or update an event
+lead: Fill in the form. Your event is prepared below, ready to copy into the website. Nothing is saved on this page.
+scripts: admin
+---
+{{page_hero}}
+
+<section class="band" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="how-title">How it works</h2>
+    </div>
+    <ol class="steps">
+      <li><strong>Fill in the form</strong> below. Choose an existing event to write its summary after it has taken place.</li>
+      <li><strong>Copy the result</strong> from the box on the right. Choose "Full events list" and copy it.</li>
+      <li><strong>Paste it into <code>data/events.json</code></strong> in the website's GitHub repository (replace the whole file) and commit. The site rebuilds in about a minute.</li>
+      <li><strong>Add photographs</strong> by uploading them to the folder shown under "Photo folder". They appear on the event's page automatically.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="band tone-alt" aria-labelledby="form-title">
+  <div class="wrap admin">
+    <form class="form admin__form" id="event-form" novalidate autocomplete="off">
+      <h2 id="form-title">Event details</h2>
+
+      <div class="field">
+        <label for="a-load">Start from an existing event</label>
+        <select id="a-load"><option value="">New event</option></select>
+        <p class="field__hint">Use this to write the summary of an event that has taken place, or to change its details.</p>
+      </div>
+
+      <div class="field"><label for="a-title">Event name <span class="req" aria-hidden="true">*</span></label><input id="a-title" type="text" maxlength="120" required></div>
+      <div class="field"><label for="a-slug">Web address ending</label><input id="a-slug" type="text" maxlength="80" spellcheck="false"><p class="field__hint" id="a-slug-hint">The event page will be at /events/<span data-slug-preview>your-event</span></p></div>
+
+      <div class="grid-2">
+        <div class="field"><label for="a-start">Start date <span class="req" aria-hidden="true">*</span></label><input id="a-start" type="date" required></div>
+        <div class="field"><label for="a-end">End date</label><input id="a-end" type="date"><p class="field__hint">Leave empty for a one-day event.</p></div>
+        <div class="field"><label for="a-time">Start time</label><input id="a-time" type="time"><p class="field__hint">Optional. India Standard Time.</p></div>
+        <div class="field"><label for="a-endtime">End time</label><input id="a-endtime" type="time"></div>
+      </div>
+      <label class="check" for="a-tentative"><input type="checkbox" id="a-tentative"><span>The date is tentative. Show "Dates to be confirmed" and the text below.</span></label>
+      <div class="field"><label for="a-datetext">Date wording (optional)</label><input id="a-datetext" type="text" maxlength="80" placeholder="Tentatively January 2027"></div>
+
+      <div class="field"><label for="a-venue">Venue</label><input id="a-venue" type="text" maxlength="160" placeholder="Leave empty if not decided"></div>
+      <div class="field"><label for="a-summary">Short description (shown on the event button)</label><textarea id="a-summary" rows="2" maxlength="300"></textarea></div>
+      <div class="field"><label for="a-desc">About the event (shown before the event)</label><textarea id="a-desc" rows="5"></textarea><p class="field__hint">Leave a blank line between paragraphs.</p></div>
+
+      <fieldset class="field fieldset">
+        <legend>Registration</legend>
+        <div class="field"><label for="a-regmode">How do people register?</label>
+          <select id="a-regmode">
+            <option value="form">On this website (form)</option>
+            <option value="external">On another form (paste the link)</option>
+            <option value="none">No registration</option>
+          </select></div>
+        <div class="field" data-for="external" hidden><label for="a-regurl">Registration form link</label><input id="a-regurl" type="url" placeholder="https://forms.gle/..."></div>
+        <label class="check" for="a-regopen"><input type="checkbox" id="a-regopen" checked><span>Registration is open</span></label>
+        <div class="field"><label for="a-deadline">Last date to register</label><input id="a-deadline" type="date"><p class="field__hint">Optional. Registration closes automatically after this date.</p></div>
+        <div class="field"><label for="a-regnote">Note shown above the form</label><input id="a-regnote" type="text" maxlength="200" placeholder="For example: Entry is free."></div>
+      </fieldset>
+
+      <div class="field"><label for="a-status">Event status</label>
+        <select id="a-status">
+          <option value="auto">Automatic (changes to completed after the end date)</option>
+          <option value="upcoming">Always upcoming</option>
+          <option value="completed">Completed now</option>
+        </select></div>
+
+      <fieldset class="field fieldset">
+        <legend>After the event</legend>
+        <div class="field"><label for="a-recap">Summary of the event</label><textarea id="a-recap" rows="6"></textarea><p class="field__hint">Explain what happened. Leave a blank line between paragraphs. It appears with the photographs once the event is completed.</p></div>
+        <div class="field"><label for="a-stats">Numbers (optional)</label><textarea id="a-stats" rows="3" placeholder="Participants: 250&#10;Speakers: 12"></textarea><p class="field__hint">One per line, as "Label: number".</p></div>
+      </fieldset>
+    </form>
+
+    <div class="admin__out">
+      <div class="admin__sticky">
+        <h2>Result</h2>
+        <div class="tabs" role="tablist" aria-label="What to copy">
+          <button class="tab" type="button" role="tab" id="t-all" aria-selected="true" aria-controls="out-panel" data-tab="all">Full events list</button>
+          <button class="tab" type="button" role="tab" id="t-one" aria-selected="false" aria-controls="out-panel" data-tab="one" tabindex="-1">This event only</button>
+        </div>
+        <div id="out-panel" role="tabpanel" aria-labelledby="t-all">
+          <p class="field__hint" id="out-help">Replace everything in <code>data/events.json</code> with this.</p>
+          <textarea class="code" id="out" rows="16" readonly spellcheck="false" aria-describedby="out-help"></textarea>
+          <div class="btn-row">
+            <button class="btn" type="button" id="copy-out">{{icon: copy}}<span data-label>Copy</span></button>
+          </div>
+          <p class="form__status" role="status" aria-live="polite" id="out-status"></p>
+        </div>
+        <div class="notice" id="problems" hidden></div>
+        <div class="folder">
+          <h3>Photo folder</h3>
+          <p>Upload this event's photographs here, then commit:</p>
+          <p><code id="folder">static/photos/events/your-event/</code></p>
+          <p class="field__hint">Use JPG, PNG or WebP. A file called <code>cover</code> (for example cover.jpg) becomes the event's main picture. The photos are resized automatically.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{events_source}}

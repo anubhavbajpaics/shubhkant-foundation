@@ -1,0 +1,30 @@
+{
+  "_help": "One event. Copy it into the list in data/events.json. Remove the lines you do not need.",
+  "slug": "youth-summit-2027",
+  "title": "Youth Summit 2027",
+  "subtitle": "Optional second line (for example in Hindi)",
+  "tagline": "Optional short line under the title",
+  "start": "2027-03-05T10:00",
+  "end": "2027-03-06T17:00",
+  "dateTentative": false,
+  "dateText": "Optional wording that replaces the automatic date text",
+  "venue": "Venue name and city",
+  "logo": "assets/logo-banadaal.webp",
+  "page": "/bana-daal",
+  "summary": "One or two sentences shown on the event button.",
+  "description": ["Paragraph about the event, shown before it happens.", "Another paragraph."],
+  "highlights": ["Optional bullet under 'What to expect'"],
+  "status": "auto",
+  "registration": {
+    "mode": "form",
+    "open": true,
+    "deadline": "2027-03-01",
+    "note": "Entry is free.",
+    "url": "only for mode external"
+  },
+  "recap": {
+    "summary": ["Written after the event: what happened.", "Second paragraph."],
+    "highlights": [ { "label": "Participants", "value": "250" } ],
+    "captions": { "photo-1.jpg": "Caption shown in the photo viewer" }
+  }
+}
