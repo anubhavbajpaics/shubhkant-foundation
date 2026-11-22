@@ -55,7 +55,7 @@ await test('API accepts a valid registration and forwards it', async () => {
   const r = await post(good); const j = await r.json();
   assert.equal(r.status, 200); assert.equal(j.ok, true); assert.match(j.ref, /^SF-[0-9A-F]{6}$/);
   const sent = hook.at(-1);
-  assert.equal(sent.event.title, 'Navnirman-e-Bharat Youth Parliament'); assert.equal(sent.fields.email, 'asha@example.com'); assert.equal(sent.ref, j.ref);
+  assert.equal(sent.event.title, 'Navnirman-e-Bharat Youth Parliament: The Delhi Edition'); assert.equal(sent.fields.email, 'asha@example.com'); assert.equal(sent.ref, j.ref);
 });
 await test('API rejects bad input with field messages', async () => {
   const r = await post({ ...good, fields: { ...good.fields, email: 'nope', phone: '12', name: '' } }); const j = await r.json();
