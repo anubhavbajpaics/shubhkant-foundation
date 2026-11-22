@@ -1,40 +1,20 @@
 [
   {
     "slug": "navnirman-e-bharat",
-    "title": "Navnirman-e-Bharat Youth Parliament: The Delhi Edition",
+    "title": "Navnirman-e-Bharat Youth Parliament",
     "subtitle": "नवनिर्माण-ए-भारत",
     "tagline": "युवा • विचार • परिवर्तन",
     "start": "2026-11-16",
     "end": "2026-11-17",
-    "venue": "NDMC Convention Centre, New Delhi",
+    "venue": "",
     "logo": "assets/logo-navnirman.webp",
-    "summary": "A two-day Youth Parliament organised by Shubhkant Foundation at the NDMC Convention Centre, New Delhi, with 300+ students and young participants.",
+    "summary": "A two-day Youth Parliament organised by Shubhkant Foundation.",
     "description": [
-      "A two-day Youth Parliament organised by Shubhkant Foundation on 16 and 17 November 2026 at the NDMC Convention Centre, New Delhi.",
-      "More than 300 students and young participants took part in parliamentary sessions focused on the implementation of 33% reservation for women in legislatures."
+      "A two-day Youth Parliament organised by Shubhkant Foundation.",
+      "The venue and programme will be shared on this page soon."
     ],
-    "registration": {
-      "mode": "form",
-      "open": true
-    },
-    "recap": {
-      "summary": [
-        "The Delhi Edition of the Navnirman-e-Bharat Youth Parliament brought together more than 300 students and young participants at the NDMC Convention Centre, New Delhi, on 16 and 17 November 2026.",
-        "Participants took part in parliamentary discussions on the implementation of 33% reservation for women in legislatures, along with delimitation and balanced representation.",
-        "Shri Manoj Tiwari, MP, addressed the participants through a video message and spoke about the importance of understanding parliamentary rules and procedures."
-      ],
-      "highlights": [
-        {
-          "label": "Young participants",
-          "value": "300+"
-        },
-        {
-          "label": "Days",
-          "value": "2"
-        }
-      ],
-      "captions": {}
-    }
+    "registration": { "mode": "form", "open": true },
+    "recap": { "summary": [], "highlights": [], "captions": {} }
   },
   {
     "slug": "bana-daal",
@@ -55,38 +35,23 @@
       "Pitching opportunities, practical learning and expert feedback.",
       "Networking, interdisciplinary partnerships and professional relationships."
     ],
-    "registration": {
-      "mode": "form",
-      "open": true
-    },
-    "recap": {
-      "summary": [],
-      "highlights": [],
-      "captions": {}
-    }
+    "registration": { "mode": "form", "open": true },
+    "recap": { "summary": [], "highlights": [], "captions": {} }
   },
   {
-    "slug": "navnirman-bharat-2-haryana-edition",
-    "title": "Navnirman Bharat 2.0: The Haryana Edition",
-    "tagline": "Coming soon",
-    "start": "2027-03",
+    "slug": "delhi-vidhan-sabha-youth-parliament",
+    "title": "Delhi Vidhan Sabha Youth Parliament",
+    "start": "2027-01",
     "dateTentative": true,
-    "dateText": "Proposed: last week of March 2027",
+    "dateText": "Tentatively January 2027",
     "venue": "",
-    "logo": "assets/logo-navnirman.webp",
-    "summary": "The next edition of Navnirman Bharat, coming soon to Haryana. Proposed to be held in the last week of March 2027.",
+    "logo": "assets/logo-vidhan.webp",
+    "summary": "A youth parliament initiative by Shubhkant Foundation. The dates are tentative and will be confirmed here.",
     "description": [
-      "Navnirman Bharat 2.0: The Haryana Edition is coming soon.",
-      "It is proposed to be held in the last week of March 2027. The confirmed dates and venue will be shared on this page."
+      "A youth parliament initiative by Shubhkant Foundation.",
+      "The dates are tentative. The confirmed dates will be shared on this page."
     ],
-    "registration": {
-      "mode": "none",
-      "note": "Registration has not opened yet. Details will be shared here soon."
-    },
-    "recap": {
-      "summary": [],
-      "highlights": [],
-      "captions": {}
-    }
+    "registration": { "mode": "form", "open": true },
+    "recap": { "summary": [], "highlights": [], "captions": {} }
   }
 ]

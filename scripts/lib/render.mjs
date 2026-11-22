@@ -63,7 +63,6 @@ const NAV = [
   ['events', '/events', 'Events'],
   ['bana-daal', '/bana-daal', 'BANA DAAL'],
   ['gallery', '/gallery', 'Gallery'],
-  ['press', '/press', 'In the news'],
   ['partner', '/partner', 'Partner with us'],
   ['donate', '/donate', 'Donate'],
   ['contact', '#contact', 'Contact'],
@@ -118,7 +117,6 @@ export function footer(ctx) {
           <li><a href="/events">Events</a></li>
           <li><a href="/bana-daal">BANA DAAL</a></li>
           <li><a href="/gallery">Gallery</a></li>
-          <li><a href="/press">In the news</a></li>
           <li><a href="/partner">Partner with us</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/join">Join the team</a></li>
