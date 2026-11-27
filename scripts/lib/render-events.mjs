@@ -39,15 +39,15 @@ function registrationCard(ctx, ev) {
   const reg = ev.registration || {};
   const mode = reg.mode === 'external' && !reg.url ? 'form' : reg.mode || 'form';
   const tentative = ev.d.state === 'tentative';
-  const title = tentative ? 'Register your interest' : 'Register for this event';
+  const title = reg.title || (tentative ? 'Register your interest' : 'Register for this event');
   const note = reg.note ? `<p class="reg-card__note">${esc(reg.note)}</p>` : '';
   const deadline = reg.deadline ? `<p class="reg-card__note">Registration closes on ${esc(ev.fmtDeadline)}.</p>` : '';
 
   let on = '';
   if (mode === 'external' && reg.url) {
-    on = `<h2>${title}</h2>${note}${deadline}
-      <p>Registration for this event happens on a separate form.</p>
-      <div class="btn-row"><a class="btn" href="${esc(reg.url)}" target="_blank" rel="noopener noreferrer">Open the registration form${icon('external')}<span class="sr-only"> (opens in a new tab)</span></a></div>`;
+    on = `<h2>${title}</h2>${deadline}
+      <p>${esc(reg.note || 'Registration for this event happens on a separate form.')}</p>
+      <div class="btn-row"><a class="btn" href="${esc(reg.url)}" target="_blank" rel="noopener noreferrer">${esc(reg.cta || 'Open the registration form')}${icon('external')}<span class="sr-only"> (opens in a new tab)</span></a></div>`;
   } else if (mode === 'form') {
     const fields = (ev.registration?.fields || ctx.site.registrationFields).map(fieldHtml).join('\n');
     const submit = tentative ? 'Register my interest' : 'Submit registration';

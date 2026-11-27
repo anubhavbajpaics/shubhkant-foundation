@@ -88,21 +88,34 @@ scripts: events
   </div>
 </section>
 
-<section class="band tone-inv bd" aria-labelledby="bd-title">
+
+
+<section class="band tone-alt" aria-labelledby="latest-title">
   <div class="wrap">
-    <div class="bd__top">
-      <img class="bd__logo" src="/assets/logo-banadaal.webp" width="340" height="340" alt="BANA DAAL: Soch. Bana. Badha. An initiative under Shubhkant Foundation">
-      <div class="bd__intro">
-        <h2 id="bd-title">BANA DAAL</h2>
-        <p class="bd__tagline">Soch. Bana. Badha.</p>
-        <p class="lead">A flagship event under Shubhkant Foundation that brings together aspiring entrepreneurs, young minds and visionary thinkers to turn potential into progress.</p>
-        <div class="btn-row">
-          <span class="bd__date">{{icon: calendar}}{{event_when: bana-daal}}</span>
-          <a class="btn" href="{{event_url: bana-daal}}">{{event_cta: bana-daal}}{{icon: arrow}}</a>
-          <a class="btn btn--ghost" href="/bana-daal">About BANA DAAL</a>
-        </div>
+    <div class="sec-head sec-head--row">
+      <div>
+        <h2 id="latest-title">Perspectives &amp; updates</h2>
+        <p class="lead">Ideas, reflections and announcements from Shubhkant Foundation.</p>
       </div>
+      <a class="btn btn--ghost" href="/blogs">All blogs &amp; updates{{icon: arrow}}</a>
     </div>
+    <div class="blog-grid">
+      {{blogs_featured}}
+    </div>
+    <div class="btn-row">
+      <a class="btn btn--ghost" href="/press">In the news &amp; press coverage{{icon: arrow}}</a>
+    </div>
+  </div>
+</section>
+
+<section class="band tone-inv nab-home" aria-labelledby="nab-home-title">
+  <div class="wrap nab-home__inner">
+    <div>
+      <p class="eyebrow">Coming up · April 2027</p>
+      <h2 id="nab-home-title">Navnirman Youth Parliament 2.0</h2>
+      <p class="lead">Planned for the last week of April 2027. Join the next edition of our Youth Parliament initiative.</p>
+    </div>
+    {{navnirman_cta}}
   </div>
 </section>
 

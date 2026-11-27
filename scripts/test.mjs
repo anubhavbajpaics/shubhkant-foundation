@@ -55,7 +55,7 @@ await test('API accepts a valid registration and forwards it', async () => {
   const r = await post(good); const j = await r.json();
   assert.equal(r.status, 200); assert.equal(j.ok, true); assert.match(j.ref, /^SF-[0-9A-F]{6}$/);
   const sent = hook.at(-1);
-  assert.equal(sent.event.title, 'Navnirman-e-Bharat Youth Parliament'); assert.equal(sent.fields.email, 'asha@example.com'); assert.equal(sent.ref, j.ref);
+  assert.equal(sent.event.title, 'Navnirman-e-Bharat Youth Parliament: The Delhi Edition'); assert.equal(sent.fields.email, 'asha@example.com'); assert.equal(sent.ref, j.ref);
 });
 await test('API rejects bad input with field messages', async () => {
   const r = await post({ ...good, fields: { ...good.fields, email: 'nope', phone: '12', name: '' } }); const j = await r.json();
@@ -95,9 +95,29 @@ await test('site builds and every internal link resolves', async () => {
     assert.ok(!/\{\{|undefined|\[object/.test(html.replace(/<script[\s\S]*?<\/script>/g, '')), `placeholder text left in ${f}`);
     for (const m of html.matchAll(/(?:href|src)="(\/[^"#?]*)/g)) {
       const u = m[1]; if (u.startsWith('//')) continue;
-      const ok = have.has(u) || have.has(u + '.html') || (u === '/' && have.has('/index.html')) || u === '/api/register';
+      const ok = have.has(u) || have.has(u + '.html') || have.has(u.replace(/\/$/, '') + '/index.html') ||
+        (u === '/' && have.has('/index.html')) || u === '/api/register';
       if (!ok) bad.push(`${path.relative(dist, f)} -> ${u}`);
     }
+  }
+  const constitution = await fs.readFile(path.join(dist, 'blogs', 'constitution-day-reflection', 'index.html'), 'utf8');
+  assert.match(constitution, /Are We Merely Practising Democracy/);
+  assert.match(constitution, /Sreejata Ghosh/);
+  assert.match(constitution, /Article 19\(1\)\(a\)/);
+  const announcement = await fs.readFile(path.join(dist, 'blogs', 'navnirman-youth-parliament-2-registration', 'index.html'), 'utf8');
+  assert.match(announcement, /https:\/\/forms\.google\.com|https:\/\/forms\.gle/);
+  const press = await fs.readFile(path.join(dist, 'press.html'), 'utf8');
+  assert.match(press, /dainik-bhaskar-navnirman-2026-11-26\.webp/);
+  assert.match(press, /navnirman-youth-parliament-press\.mp4/);
+  assert.match(press, /additional-newspaper-clipping-2026-11-26\.webp/);
+  const nabEvent = await fs.readFile(path.join(dist, 'events', 'navnirman-youth-parliament-2.html'), 'utf8');
+  assert.match(nabEvent, /Last week of April 2027/);
+  assert.match(nabEvent, /https:\/\/forms\.gle\/vvr2L1K3S2fo394u6/);
+  assert.match(nabEvent, /REGISTER FOR NAVNIRMAN 2\.0/);
+  const builtHtml = files.filter((f) => f.endsWith('.html'));
+  for (const f of builtHtml) {
+    const html = await fs.readFile(f, 'utf8');
+    assert.ok(!/BANA DAAL|bana-daal/i.test(html), `withdrawn BANA DAAL reference remains in ${f}`);
   }
   await fs.rm(dist, { recursive: true, force: true });
   assert.deepEqual([...new Set(bad)], []);

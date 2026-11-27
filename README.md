@@ -3,7 +3,7 @@
 A multi-page site for Vercel. Each event is a button; opening it shows the **registration page** while the event is
 upcoming, and **photographs plus a written summary** once it has taken place. It switches by itself on the event date.
 
-Pages: Home, About, Events, one page per event, BANA DAAL, Gallery, Partner with us, Join the team, Add an event (for organisers).
+Pages: Home, About, Events, one page per event, Blogs, Gallery, Press coverage, Partner with us, Join the team, Add an event (for organisers).
 
 ## 1. Put it on Vercel (once)
 
@@ -50,3 +50,29 @@ builds. Photo spaces stay blank until a file is added.
 - Contact details show in the footer and the Partner page once filled in `data/site.json`.
 - The site sends a strict Content-Security-Policy (see `vercel.json`). If you add an embed (for example a YouTube video or a Google Form iframe), add its address to `frame-src`/`script-src` there.
 - Registration data lives only in your Google Sheet. The site stores nothing.
+
+
+## 6. Blogs and announcements
+
+Add or update editorial content in `data/blogs.json`. Each entry becomes a page at
+`/blogs/<slug>` and appears in the `/blogs` index. Supported content blocks include
+paragraphs, quotations, lists and signatures. Featured images use paths under `static/`.
+
+## 7. Press coverage and event media
+
+Press clippings and press-gallery images are stored in `static/press/`. Event photographs
+belong in `static/photos/events/<event-slug>/`; a `cover.*` file is used as the event card
+and recap cover. The supplied Navnirman video is stored under `static/video/`.
+
+## 8. Navnirman Youth Parliament 2.0
+
+The second-edition details and external registration URL are stored in `data/events.json`.
+Update the same event entry when the exact date, venue or registration status changes.
+
+
+## 9. Original source materials
+
+Original supplied article, newspaper clippings, event photographs and video are retained in
+`docs/source-materials/`. Optimised copies used by the public website live under `static/`.
+
+See `docs/website-handover.md` for the Foundation-side account, domain and access checklist.

@@ -1,6 +1,7 @@
 // Building blocks shared by every page: icons, photo slots, header, footer,
 // event cards and the {{token}} engine used by src/pages/*.html.
 import { esc, jsonForScript, ES } from './util.mjs';
+import { blogsList, featuredBlogs, navnirmanCta } from './render-blogs.mjs';
 
 export const icon = (name, cls = '') =>
   `<svg class="i${cls ? ` ${cls}` : ''}" aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>`;
@@ -61,8 +62,9 @@ export function contactBlock(ctx, heading = '') {
 const NAV = [
   ['about', '/about', 'About'],
   ['events', '/events', 'Events'],
-  ['bana-daal', '/bana-daal', 'BANA DAAL'],
+  ['blogs', '/blogs', 'Blogs'],
   ['gallery', '/gallery', 'Gallery'],
+  ['press', '/press', 'In the news'],
   ['partner', '/partner', 'Partner with us'],
   ['donate', '/donate', 'Donate'],
   ['contact', '#contact', 'Contact'],
@@ -115,8 +117,9 @@ export function footer(ctx) {
         <ul class="foot__links">
           <li><a href="/about">About us</a></li>
           <li><a href="/events">Events</a></li>
-          <li><a href="/bana-daal">BANA DAAL</a></li>
+          <li><a href="/blogs">Blogs</a></li>
           <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/press">In the news</a></li>
           <li><a href="/partner">Partner with us</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/join">Join the team</a></li>
@@ -264,6 +267,9 @@ const components = {
       : '';
   },
   gallery: (ctx, a, page) => ctx.galleryHtml,
+  blogs_list: (ctx) => blogsList(ctx),
+  blogs_featured: (ctx) => featuredBlogs(ctx),
+  navnirman_cta: (ctx) => navnirmanCta(ctx),
   events_data: (ctx) => eventsDataScript(ctx.events),
   events_source: (ctx) => `<script type="application/json" id="events-source">${jsonForScript(ctx.rawEvents)}</script>`,
 };

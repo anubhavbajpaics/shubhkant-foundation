@@ -13,6 +13,7 @@ import { whenText, calendarUrl, deadlineText } from './lib/format.mjs';
 import { loadSharp, createPhotoProcessor, eventPhotos, slotPhoto, galleryPhotos } from './lib/photos.mjs';
 import { header, footer, eventCard, fill, imgTag, icon } from './lib/render.mjs';
 import { eventPage } from './lib/render-events.mjs';
+import { blogPageBody } from './lib/render-blogs.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = Object.fromEntries(
@@ -73,7 +74,10 @@ function parsePage(src, file) {
     }
   }
   const base = file.replace(/\.html$/, '');
-  return { meta, body: m ? src.slice(m[0].length) : src, file, url: base === 'index' ? '/' : `/${base}`, out: `${base}.html` };
+  const customPath = meta.path ? meta.path.replace(/^\/+|\/+$/g, '') : '';
+  const url = customPath ? `/${customPath}` : base === 'index' ? '/' : `/${base}`;
+  const out = customPath ? `${customPath}/index.html` : `${base}.html`;
+  return { meta, body: m ? src.slice(m[0].length) : src, file, url, out };
 }
 
 function layout(ctx, page, body, extra = {}) {
@@ -81,7 +85,7 @@ function layout(ctx, page, body, extra = {}) {
   const title = /shubhkant/i.test(page.title) ? page.title : `${page.title} | ${site.name}`;
   const desc = page.description || site.description;
   const abs = baseUrl ? `${baseUrl}${page.url}` : '';
-  const ogImage = baseUrl ? `${baseUrl}/assets/og.png` : '';
+  const ogImage = baseUrl ? `${baseUrl}${page.ogImage || '/assets/og.png'}` : '';
   const needs = new Set((page.scripts || []).filter(Boolean));
   const usesState = needs.has('events') || needs.has('register') || needs.has('admin');
   const list = [...(usesState ? ['event-state'] : []), 'site', ...needs];
@@ -96,7 +100,7 @@ function layout(ctx, page, body, extra = {}) {
 ${page.noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
 ${abs ? `<link rel="canonical" href="${esc(abs)}">` : ''}
 <meta property="og:site_name" content="${esc(site.name)}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${esc(page.ogType || "website")}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 ${abs ? `<meta property="og:url" content="${esc(abs)}">` : ''}
@@ -170,12 +174,21 @@ async function main() {
   const site = await readJson('data/site.json');
   let rawEvents = await readJson('data/events.json');
   const photoMeta = await readJson('data/photos.json', {});
+  const rawBlogs = await readJson('data/blogs.json', []);
   const sampleDir = path.join(ROOT, 'docs', 'sample-photos');
   if (args.sample) {
     const sample = await readJson('docs/sample-events.json');
     rawEvents = [...rawEvents, ...sample.map((e) => ({ ...e, _sample: true }))];
   }
   validateEvents(rawEvents);
+  if (!Array.isArray(rawBlogs)) throw new Error('data/blogs.json must be a list of blog entries.');
+  const blogSlugs = new Set();
+  for (const blog of rawBlogs) {
+    if (!blog || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(blog.slug || '')) throw new Error('Each blog needs a lowercase, hyphenated slug.');
+    if (blogSlugs.has(blog.slug)) throw new Error(`Duplicate blog slug: ${blog.slug}`);
+    blogSlugs.add(blog.slug);
+    if (!blog.title || !Array.isArray(blog.content)) throw new Error(`Blog "${blog.slug}" needs a title and content blocks.`);
+  }
 
   const envUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '';
   const baseUrl = PREVIEW ? '' : (process.env.SITE_URL || site.url || envUrl || '').replace(/\/+$/, '');
@@ -194,6 +207,7 @@ async function main() {
     mode: PREVIEW ? 'preview' : 'production',
     site, baseUrl, now: NOW, year: new Date(NOW).getFullYear(),
     rawEvents: rawEvents.filter((e) => !e._sample),
+    blogs: rawBlogs,
     photoAlts: photoMeta,
     slots: {}, events: [], galleryHtml: '',
   };
@@ -254,8 +268,39 @@ async function main() {
     await write(`events/${ev.slug}.html`, layout(ctx, p, out.body, { mainAttrs: out.mainAttrs, head: out.head }));
   }
 
+  for (const blog of ctx.blogs) {
+    const url = `/blogs/${blog.slug}`;
+    const p = {
+      title: blog.title,
+      description: blog.excerpt || site.description,
+      nav: 'blogs',
+      url,
+      ogType: 'article',
+      ogImage: blog.featuredImage || '/assets/og.png',
+      scripts: [],
+      file: 'blog',
+    };
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: blog.title,
+      datePublished: blog.date,
+      author: { '@type': blog.author === site.name ? 'Organization' : 'Person', name: blog.author || site.name },
+      publisher: { '@type': 'Organization', name: site.name },
+      description: blog.excerpt || '',
+      image: baseUrl ? `${baseUrl}${blog.featuredImage || '/assets/og.png'}` : (blog.featuredImage || '/assets/og.png'),
+      mainEntityOfPage: baseUrl ? `${baseUrl}${url}` : url,
+    };
+    const head = `<meta property="article:published_time" content="${esc(blog.date || '')}">` +
+      `<meta property="article:author" content="${esc(blog.author || site.name)}">` +
+      `<meta property="article:section" content="${esc(blog.category || 'From the Foundation')}">` +
+      `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>`;
+    await write(`blogs/${blog.slug}/index.html`, layout(ctx, p, blogPageBody(ctx, blog), { head }));
+  }
+
   if (!PREVIEW) {
-    const urls = pages.filter((p) => !['404.html', 'add-event.html'].includes(p.file) && p.meta.noindex !== 'true').map((p) => p.url).concat(ctx.events.map((e) => e.url));
+    const urls = pages.filter((p) => !['404.html', 'add-event.html'].includes(p.file) && p.meta.noindex !== 'true').map((p) => p.url)
+      .concat(ctx.events.map((e) => e.url), ctx.blogs.map((b) => `/blogs/${b.slug}`));
     await fs.writeFile(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /add-event\n${baseUrl ? `Sitemap: ${baseUrl}/sitemap.xml\n` : ''}`);
     if (baseUrl) {
       const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${esc(baseUrl + (u === '/' ? '/' : u))}</loc></url>`).join('\n')}\n</urlset>\n`;
